@@ -1,0 +1,26 @@
+# Railway.app TOML configuration
+# Alternative to railway.yaml
+
+[build]
+builder = "dockerfile"
+dockerfile = "Dockerfile"
+
+[start]
+cmd = "npm start"
+
+[[services]]
+name = "secure-pr-reviewer"
+startCommand = "npm start"
+builder = "dockerfile"
+
+[services.port]
+http = 3000
+
+[services. healthCheck]
+path = "/health"
+interval = 30000
+timeout = 10000
+
+[environment]
+NODE_ENV = "production"
+LOG_LEVEL = "info"
